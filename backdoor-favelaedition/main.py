@@ -23,9 +23,10 @@ def main():
 
         post_response = session.post("https://furywheel.me/register", data=payload)
 
-        print(f"Request {i+1}: {post_response.status_code}")
+        print(f"Request {i+1}: {post_response.status_code}") # 200 , 200 (as of 01/09/2025)
 
     session.close()
 
 if __name__ == "__main__":
     main()
+
