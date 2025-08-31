@@ -1,6 +1,5 @@
 # Misc-Scripts
-miscellaneous scripts
 
-# contents:
+## contents:
 
 pyramidgen - generates a minecraft pyramid based on x width 
