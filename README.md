@@ -4,7 +4,7 @@
 
 pyramidgen - generates a minecraft pyramid based on x width<br>
 NFS_SM - need for speed save file manager<br>
-backdoor-favelaedition - insecure api packet forging showcase poc (https://furywheel.me/)
+backdoor-favelaedition - insecure api packet forging showcase poc (https://furywheel.me/)<br>
 SteamTracker - scrapes steam profiles for updates
 
 <br>
