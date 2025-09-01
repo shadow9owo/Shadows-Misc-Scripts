@@ -9,4 +9,4 @@ backdoor-favelaedition - insecure api packet forging showcase poc (https://furyw
 <br>
 <img style="height:256px; width:256px;" src="cover.jpeg" alt="i need drugs certified!!!" />
 <br>
-<p>i need drugz certified <a href="https://www.youtube.com/channel/UCciZcZjvYjz7jpiCraADPHg">necro</a></p>
+<p>i need drugz self certified <a href="https://www.youtube.com/channel/UCciZcZjvYjz7jpiCraADPHg">necro</a></p>
