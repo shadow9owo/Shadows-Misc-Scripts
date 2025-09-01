@@ -3,4 +3,4 @@
 ## contents:
 
 pyramidgen - generates a minecraft pyramid based on x width<br>
-backdoor-favelaedition - insecure api showcase poc (https://furywheel.me/)
+backdoor-favelaedition - insecure api packet forging showcase poc (https://furywheel.me/)
