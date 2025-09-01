@@ -1,4 +1,4 @@
-# Shadows Misc Scripts (MSS)
+# Shadows Misc Scripts
 
 ## contents:
 
