@@ -1,12 +1,13 @@
-# Misc-Scripts
-
-## contents:
-
-pyramidgen - generates a minecraft pyramid based on x width<br>
-backdoor-favelaedition - insecure api packet forging showcase poc (https://furywheel.me/)
-
+# NFSSFM
+An Need For Speed Save File Manager.
 <br>
-<img style="height:256px; width:256px;" src="cover.jpeg" alt="i need drugs certified!!!" />
-<p>i need drugz certified <a href="https://www.youtube.com/channel/UCciZcZjvYjz7jpiCraADPHg">necro</a></p>
+supports : <br>
 <br>
-<p>rate 5 stars</p>
+Unbound - tested<br>
+Heat - tested<br>
+Payback - tested<br>
+Hot pursuit remastered - tested<br>
+Most Wanted 2012 && 2004 - tested<br>
+Rivals - tested<br>
+<br>
+Tested on Windows (should work on linux)
