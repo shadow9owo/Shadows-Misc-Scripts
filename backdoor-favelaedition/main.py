@@ -48,7 +48,7 @@ def main(): # make this async and while true on 16 threads and server go boom
         try:
             print(response.json())
         except ValueError:
-            print("Response not JSON:", response.text)
+            print("Response not JSON:", response.text) # good
 
         response = session.get(f"{"https://furywheel.me"}/dashboard")
         soup = BeautifulSoup(response.text, "html.parser")
@@ -67,7 +67,7 @@ def main(): # make this async and while true on 16 threads and server go boom
         try:
             print(response.json())
         except ValueError:
-            print("Response not JSON:", response.text)
+            print("Response not JSON:", response.text) # good
 
         session.close()
 
@@ -75,3 +75,4 @@ def main(): # make this async and while true on 16 threads and server go boom
 
 if __name__ == "__main__":
     main()
+
