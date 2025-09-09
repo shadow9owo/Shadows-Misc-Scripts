@@ -29,8 +29,3 @@ def main(): # make this async and while true on 16 threads and server go boom
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
