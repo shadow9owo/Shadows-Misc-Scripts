@@ -4,7 +4,7 @@ from faker import Faker
 
 fake = Faker()
 
-def main():
+def main(): # make this async and while true on 16 threads and server go boom
     session = requests.Session()
 
     for i in range(2):
@@ -29,5 +29,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
