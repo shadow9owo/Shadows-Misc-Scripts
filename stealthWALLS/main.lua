@@ -1,4 +1,5 @@
 print("loaded")
+print("warning !!! use this at your own risk i am not responsible for your ban !!!")
 
 local UserInputService = game:GetService("UserInputService")
 local Players           = game:GetService("Players")
