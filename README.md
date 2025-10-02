@@ -1,6 +1,6 @@
 # Shadows Misc Scripts
 
-## contents:
+### contents:
 
 pyramidgen - generates a minecraft pyramid based on x width<br>
 NFS_SM - need for speed save file manager<br>
