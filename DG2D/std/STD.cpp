@@ -4,7 +4,7 @@
 #include <vector>
 #include <cstdint>
 #include <cstring>
-#include "../enums.hpp"
+#include "enums.hpp"
 #include "STD.hpp"
 
 namespace DG2D {
