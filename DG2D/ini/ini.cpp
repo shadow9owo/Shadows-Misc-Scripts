@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "ini.hpp"
 
 namespace DG2D
 {
