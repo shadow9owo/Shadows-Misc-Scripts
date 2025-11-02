@@ -86,7 +86,7 @@ def main():
     acc = data.get("accuracy")
     lat, lon = loc.get("lat"), loc.get("lng")
 
-    print(f"\est. location: {lat:.6f}, {lon:.6f}  (accuracy ≈ {acc} m)")
+    print(f"est. location: {lat:.6f}, {lon:.6f}  (accuracy ≈ {acc} m)")
 
     place = reverse_geocode(lat, lon)
     if place:
