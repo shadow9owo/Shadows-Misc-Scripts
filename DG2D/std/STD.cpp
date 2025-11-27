@@ -10,14 +10,14 @@
 namespace DG2D {
 namespace SmartTableDatabase {
 
-    std::string signature = "STD\0";
+    std::string signature = "STD_";
     std::string filename = "untitled.std";
 
     bool preparefile() {
         std::ifstream file(filename, std::ios::binary);
         if (file.is_open()) {
-            std::string sig(3, '\0');
-            file.read(&sig[0], 3);
+            std::string sig(4, '\0');
+            file.read(&sig[0], 4);
             if (sig != signature) {
                 std::ofstream wipe(filename, std::ios::binary | std::ios::trunc);
                 wipe.write(signature.data(), 3);
