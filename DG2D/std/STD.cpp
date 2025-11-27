@@ -20,7 +20,7 @@ namespace SmartTableDatabase {
             file.read(&sig[0], 4);
             if (sig != signature) {
                 std::ofstream wipe(filename, std::ios::binary | std::ios::trunc);
-                wipe.write(signature.data(), 3);
+                wipe.write(signature.data(), 4);
             }
         } else {
             std::ofstream newfile(filename, std::ios::binary);
