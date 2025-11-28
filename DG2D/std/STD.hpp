@@ -9,7 +9,7 @@ namespace DG2D
         extern std::string filename;
     
         extern bool SetValue(std::string Key,std::string Value);
-        extern std::string LoadValue(std::string Key);
+        extern std::string LoadValue(std::string Key,std::string def = "0");
         extern bool HasKey(std::string Key);
     }
 }
