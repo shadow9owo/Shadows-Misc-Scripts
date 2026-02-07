@@ -1,0 +1,7 @@
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/bin/Release/SpritesheetManager.exe
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/bin/Release/Newtonsoft.Json.dll
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/bin/Release/Newtonsoft.Json.xml
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/obj/x86/Release/SpritesheetManager.csproj.CoreCompileInputs.cache
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/obj/x86/Release/SpritesheetManager.csproj.CopyComplete
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/obj/x86/Release/SpritesheetManager.exe
+/home/notroot/Projects/SpritesheetManager/SpritesheetManager/obj/x86/Release/SpritesheetManager.csproj.AssemblyReference.cache
