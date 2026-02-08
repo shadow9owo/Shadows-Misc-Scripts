@@ -18,17 +18,15 @@ namespace SpritesheetManager
 
         public static bool ExportToTGA(List<MetaData> data)
         {
-            if (data.Count < 1)
+            if (data == null || data.Count < 1)
             {
-                MessageDialog md = new MessageDialog(
+                new MessageDialog(
                     MainClass.win,
                     DialogFlags.Modal,
                     MessageType.Info,
                     ButtonsType.Ok,
                     "You cant save nothing."
-                );
-                md.Run();
-                md.Destroy();
+                ).Run();
                 return false;
             }
 
@@ -45,8 +43,7 @@ namespace SpritesheetManager
             filter.AddPattern("*.png");
             fileDialog.AddFilter(filter);
 
-            outputpath = "";
-
+            string outputpath = "";
             if (fileDialog.Run() == (int)ResponseType.Accept)
             {
                 outputpath = fileDialog.Filename;
@@ -57,35 +54,33 @@ namespace SpritesheetManager
                 return false;
             }
 
-            int totalwidth = 0;
-            int maxheight = 0;
             List<Gdk.Pixbuf> validPixbufs = new List<Gdk.Pixbuf>();
             List<MetaData> validMeta = new List<MetaData>();
+            int totalwidth = 0;
+            int maxheight = 0;
 
             foreach (var meta in data)
             {
-                string fullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, meta.relativepath));
-
-                if (!File.Exists(fullPath))
-                {
-                    Console.WriteLine(fullPath);
-                    Console.WriteLine($"invalid file path");
-                    continue;
-                }
-
                 try
                 {
-                    Gdk.Pixbuf pix = new Gdk.Pixbuf(fullPath);
-                    if (pix.Width > 0 && pix.Height > 0)
+                    string fullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, meta.relativepath));
+
+                    Console.WriteLine(fullPath);
+
+                    if (!File.Exists(fullPath))
+                    { 
+                        Console.WriteLine($"invalid file path");
+                        continue;
+                    }
+
+                    using (var pix = new Gdk.Pixbuf(fullPath))
                     {
+                        if (pix.Width <= 0 || pix.Height <= 0) continue;
+
+                        validPixbufs.Add(pix.Copy());
+                        validMeta.Add(meta);
                         totalwidth += pix.Width;
                         if (pix.Height > maxheight) maxheight = pix.Height;
-                        validPixbufs.Add(pix);
-                        validMeta.Add(meta);
-                    }
-                    else
-                    {
-                        pix.Dispose();
                     }
                 }
                 catch (Exception ex)
@@ -94,52 +89,51 @@ namespace SpritesheetManager
                 }
             }
 
-            if (validPixbufs.Count == 0 || totalwidth <= 0 || maxheight <= 0)
+            if (validPixbufs.Count == 0)
             {
-                MessageDialog md = new MessageDialog(
+                new MessageDialog(
                     MainClass.win,
                     DialogFlags.Modal,
                     MessageType.Error,
                     ButtonsType.Ok,
                     "No valid images to export."
-                );
-                md.Run();
-                md.Destroy();
+                ).Run();
                 fileDialog.Dispose();
                 return false;
             }
 
-            Gdk.Pixbuf atlas = new Gdk.Pixbuf(Gdk.Colorspace.Rgb, true, 8, totalwidth, maxheight);
-            atlas.Fill(0x00000000);
-
-            int offsetx = 0;
-            List<ExportData> exportdata = new List<ExportData>();
-
-            for (int i = 0; i < validPixbufs.Count; i++)
+            using (var atlas = new Gdk.Pixbuf(Gdk.Colorspace.Rgb, true, 8, totalwidth, maxheight))
             {
-                Gdk.Pixbuf pix = validPixbufs[i];
-                MetaData meta = validMeta[i];
+                atlas.Fill(0x00000000);
+                int offsetx = 0;
+                List<ExportData> exportdata = new List<ExportData>();
 
-                pix.CopyArea(0, 0, pix.Width, pix.Height, atlas, offsetx, 0);
-
-                meta.rect = new Gdk.Rectangle(offsetx, 0, pix.Width, pix.Height);
-
-                exportdata.Add(new ExportData
+                for (int i = 0; i < validPixbufs.Count; i++)
                 {
-                    rect = new Gdk.Rectangle(offsetx, 0, pix.Width, pix.Height),
-                    id = i
-                });
+                    var pix = validPixbufs[i];
+                    var meta = validMeta[i];
 
-                offsetx += pix.Width;
-                pix.Dispose();
+                    pix.CopyArea(0, 0, pix.Width, pix.Height, atlas, offsetx, 0);
+
+                    meta.rect = new Gdk.Rectangle(offsetx, 0, pix.Width, pix.Height);
+
+                    exportdata.Add(new ExportData
+                    {
+                        rect = new Gdk.Rectangle(offsetx, 0, pix.Width, pix.Height),
+                        id = i
+                    });
+
+                    offsetx += pix.Width;
+                    pix.Dispose();
+                }
+
+                atlas.Save(outputpath, "png");
+                File.WriteAllText(outputpath + ".atlas", JsonConvert.SerializeObject(exportdata, Newtonsoft.Json.Formatting.Indented));
             }
 
-            atlas.Save(outputpath, "png");
-            File.WriteAllText(outputpath + ".atlas", JsonConvert.SerializeObject(exportdata, Newtonsoft.Json.Formatting.Indented));
-            atlas.Dispose();
             fileDialog.Dispose();
-
             return true;
         }
+
     }
 }

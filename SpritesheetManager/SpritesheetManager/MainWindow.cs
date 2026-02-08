@@ -30,16 +30,19 @@ public partial class MainWindow : Gtk.Window
 
         StringBuilder relativePath = new StringBuilder();
 
-        for (int i = lastCommonRoot + 1; i < absDirs.Length - (inclfile ? 1 : 0); i++)
+        for (int i = lastCommonRoot + 1; i < relDirs.Length; i++)
         {
             relativePath.Append("../");
         }
 
-        for (int i = lastCommonRoot + 1; i < relDirs.Length; i++)
+        for (int i = lastCommonRoot + 1; i < absDirs.Length; i++)
         {
-            relativePath.Append(relDirs[i]);
-            if (i < relDirs.Length - 1) relativePath.Append("/");
+            relativePath.Append(absDirs[i]);
+            if (i < absDirs.Length - 1) relativePath.Append("/");
         }
+
+        if (inclfile)
+            relativePath.Append("/" + absDirs[absDirs.Length - 1]);
 
         Console.WriteLine(relativePath.ToString());
 
@@ -141,7 +144,7 @@ public partial class MainWindow : Gtk.Window
         {
             try
             {
-                selectedPath = RelativePath(AppDomain.CurrentDomain.BaseDirectory, fileDialog.Filename);
+                selectedPath = RelativePath(fileDialog.Filename.TrimEnd('/'), AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/'),false);
             }
             catch (Exception ex)
             {
