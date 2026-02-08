@@ -20,7 +20,7 @@ namespace SpritesheetManager
             );
 
             FileFilter filter = new FileFilter();
-            filter.Name = "meta image data";
+            filter.Name = "meta image data | *.meta";
             filter.AddPattern("*.meta");
             fileDialog.AddFilter(filter);
 
@@ -47,7 +47,7 @@ namespace SpritesheetManager
             );
                 
             FileFilter filter = new FileFilter();
-            filter.Name = "meta image data";
+            filter.Name = "meta image data | *.meta";
             filter.AddPattern("*.meta");
             fileDialog.AddFilter(filter);
 

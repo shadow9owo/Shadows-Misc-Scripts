@@ -138,7 +138,7 @@ public partial class MainWindow
 		this.Exporttga.CanFocus = true;
 		this.Exporttga.Name = "Exporttga";
 		this.Exporttga.UseUnderline = true;
-		this.Exporttga.Label = global::Mono.Unix.Catalog.GetString("Export to tga");
+		this.Exporttga.Label = global::Mono.Unix.Catalog.GetString("Export to png");
 		this.fixed1.Add(this.Exporttga);
 		global::Gtk.Fixed.FixedChild w10 = ((global::Gtk.Fixed.FixedChild)(this.fixed1[this.Exporttga]));
 		w10.X = 187;

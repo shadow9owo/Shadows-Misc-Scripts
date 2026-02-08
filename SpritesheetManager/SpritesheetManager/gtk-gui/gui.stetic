@@ -4,7 +4,7 @@
     <images-root-path>..</images-root-path>
   </configuration>
   <import>
-    <widget-library name="../bin/Release/SpritesheetManager.exe" internal="true" />
+    <widget-library name="../bin/Debug/SpritesheetManager.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="800 800">
     <property name="MemberName" />

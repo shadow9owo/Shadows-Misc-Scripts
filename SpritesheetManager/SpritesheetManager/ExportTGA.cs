@@ -41,7 +41,7 @@ namespace SpritesheetManager
             );
 
             FileFilter filter = new FileFilter();
-            filter.Name = "spritesheet format";
+            filter.Name = "spritesheet format | *.png";
             filter.AddPattern("*.png");
             fileDialog.AddFilter(filter);
 
@@ -64,9 +64,11 @@ namespace SpritesheetManager
 
             foreach (var meta in data)
             {
-                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, meta.relativepath);
+                string fullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, meta.relativepath));
+
                 if (!File.Exists(fullPath))
                 {
+                    Console.WriteLine(fullPath);
                     Console.WriteLine($"invalid file path");
                     continue;
                 }

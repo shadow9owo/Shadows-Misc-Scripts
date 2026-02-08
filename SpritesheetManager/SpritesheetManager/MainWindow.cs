@@ -12,40 +12,36 @@ public partial class MainWindow : Gtk.Window
     public VBox rowsContainer;
     public static int highesint = 0;
 
-    public string RelativePath(string absPath, string relTo) //https://iandevlin.com/blog/2010/01/csharp/generating-a-relative-path-in-csharp/
+    public static string RelativePath(string absPath, string relTo, bool inclfile = true)//https://iandevlin.com/blog/2010/01/csharp/generating-a-relative-path-in-csharp/
     {
-        string[] absDirs = absPath.Split('/');
-        string[] relDirs = relTo.Split('/');
-
-        int len = absDirs.Length < relDirs.Length ? absDirs.Length :
-        relDirs.Length;
+        string[] absDirs = absPath.TrimEnd('/').Split('/');
+        string[] relDirs = relTo.TrimEnd('/').Split('/');
 
         int lastCommonRoot = -1;
-        int index;
-
-        for (index = 0; index < len; index++)
+        int len = Math.Min(absDirs.Length, relDirs.Length);
+        for (int i = 0; i < len; i++)
         {
-            if (absDirs[index] == relDirs[index]) lastCommonRoot = index;
+            if (absDirs[i] == relDirs[i]) lastCommonRoot = i;
             else break;
         }
 
         if (lastCommonRoot == -1)
-        {
             throw new ArgumentException("Paths do not have a common base");
-        }
 
         StringBuilder relativePath = new StringBuilder();
 
-        for (index = lastCommonRoot + 1; index < absDirs.Length; index++)
+        for (int i = lastCommonRoot + 1; i < absDirs.Length - (inclfile ? 1 : 0); i++)
         {
-            if (absDirs[index].Length > 0) relativePath.Append("../");
+            relativePath.Append("../");
         }
 
-        for (index = lastCommonRoot + 1; index < relDirs.Length - 1; index++)
+        for (int i = lastCommonRoot + 1; i < relDirs.Length; i++)
         {
-            relativePath.Append(relDirs[index] + "/");
+            relativePath.Append(relDirs[i]);
+            if (i < relDirs.Length - 1) relativePath.Append("/");
         }
-        relativePath.Append(relDirs[relDirs.Length - 1]);
+
+        Console.WriteLine(relativePath.ToString());
 
         return relativePath.ToString();
     }
@@ -133,7 +129,7 @@ public partial class MainWindow : Gtk.Window
         );
 
         FileFilter filter = new FileFilter();
-        filter.Name = "Image files";
+        filter.Name = "Image files | *.png, *.jpg, *.jpeg, *.bmp";
         filter.AddPattern("*.png");
         filter.AddPattern("*.jpg");
         filter.AddPattern("*.jpeg");
@@ -145,7 +141,7 @@ public partial class MainWindow : Gtk.Window
         {
             try
             {
-                selectedPath = RelativePath(fileDialog.Filename, AppDomain.CurrentDomain.BaseDirectory);
+                selectedPath = RelativePath(AppDomain.CurrentDomain.BaseDirectory, fileDialog.Filename);
             }
             catch (Exception ex)
             {
@@ -207,12 +203,14 @@ public partial class MainWindow : Gtk.Window
         row.Spacing = 5;
 
         Label idLabel = new Label($"{index.id}");
+        idLabel.TooltipText = "ID element";
         row.PackStart(idLabel, false, false, 5);
 
-        Label pathLabel = new Label(index.relativepath);
+        Label pathLabel = new Label(index.relativepath.Substring(0,32));
         row.PackStart(pathLabel, false, false, 5);
 
         Entry rectXEntry = new Entry(index.rect.X.ToString());
+        rectXEntry.TooltipText = "rectangle X cord";
         rectXEntry.WidthChars = 3;
         rectXEntry.Changed += (s, ev) =>
         {
@@ -222,6 +220,7 @@ public partial class MainWindow : Gtk.Window
         row.PackStart(rectXEntry, false, false, 2);
 
         Entry rectYEntry = new Entry(index.rect.Y.ToString());
+        rectYEntry.TooltipText = "rectangle Y cord";
         rectYEntry.WidthChars = 3;
         rectYEntry.Changed += (s, ev) =>
         {
@@ -231,6 +230,7 @@ public partial class MainWindow : Gtk.Window
         row.PackStart(rectYEntry, false, false, 2);
 
         Entry rectWEntry = new Entry(index.rect.Width.ToString());
+        rectWEntry.TooltipText = "rectangle W cord";
         rectWEntry.WidthChars = 3;
         rectWEntry.Changed += (s, ev) =>
         {
@@ -240,6 +240,7 @@ public partial class MainWindow : Gtk.Window
         row.PackStart(rectWEntry, false, false, 2);
 
         Entry rectHEntry = new Entry(index.rect.Height.ToString());
+        rectHEntry.TooltipText = "rectangle H cord";
         rectHEntry.WidthChars = 3;
         rectHEntry.Changed += (s, ev) =>
         {
@@ -249,6 +250,7 @@ public partial class MainWindow : Gtk.Window
         row.PackStart(rectHEntry, false, false, 2);
 
         Entry frameEntry = new Entry(index.frame.ToString());
+        frameEntry.TooltipText = "frame (animation) / face (cubemap) id";
         frameEntry.WidthChars = 2;
         frameEntry.Changed += (s, ev) =>
         {
