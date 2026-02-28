@@ -1,0 +1,8 @@
+#include <windows.h>
+
+#include "resource.h"
+
+BACKGROUNDIMG BITMAP "bg.bmp"
+ICO ICON "ico.ico"
+
+1 RT_MANIFEST "app.manifest"

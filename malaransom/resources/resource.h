@@ -1,0 +1,2 @@
+#define BACKGROUNDIMG 101
+#define ICO 102
