@@ -1,4 +1,5 @@
 from headers import math
+import random
 
 visualize = False
 
@@ -8,7 +9,11 @@ try:
 except ImportError:
     ...
 
+window_width = 800
+window_height = 600
+
 def main():
+    random.seed(1337)
     width = 0
     totalblocks = 0
     running = True
@@ -32,7 +37,7 @@ def main():
 
     if visualize:
         pygame.init()
-        screen = pygame.display.set_mode((800, 600))
+        screen = pygame.display.set_mode((window_width, window_height))
         pygame.display.set_caption("output")
 
         while running:
@@ -40,13 +45,13 @@ def main():
                 if event.type == pygame.QUIT:
                     running = False
 
-            screen.fill((30,30,30))
+            screen.fill((30,30,30)) # draws background color
 
             offset = 0
             side = width
             while side > 0:
-                pygame.draw.rect(screen, (255, min(255, offset*20), 0), 
-                                 (offset, offset, side * 4 - offset, side * 4 - offset))
+                pygame.draw.rect(screen,(255, ((side * 73) % 256), 0),((window_width / 2) - (width*4 /2) + offset, (window_height / 2) - (width*4 /2) + offset, (width*4) - (offset*2),(width*4) - (offset*2))) # draws rect using predetermined random color value and adjusting for offset based on loop iter
+                # math :)
                 total = total + (side * 4) - 12
                 side -= 1
                 offset += 4
