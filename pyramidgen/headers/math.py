@@ -1,3 +1,5 @@
+import math
+
 def CalculateTotalBlocks(x):
     total = 0
     side = x
@@ -7,4 +9,5 @@ def CalculateTotalBlocks(x):
     return total
 
 def CalculateTotalStacks(blocks):
-    return blocks / 64
+    return math.ceil(blocks / 64)
+
