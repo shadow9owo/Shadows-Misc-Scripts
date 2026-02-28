@@ -2,11 +2,11 @@ print("loaded")
 print("warning !!! use this at your own risk i am not responsible for your ban !!!")
 
 local UserInputService = game:GetService("UserInputService")
-local Players           = game:GetService("Players")
-local RunService        = game:GetService("RunService")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 
 local localPlayer = Players.LocalPlayer
-local camera      = workspace.CurrentCamera
+local camera = workspace.CurrentCamera
 
 local isSpeedBoosted   = false
 local isWallhackActive = false
@@ -33,10 +33,10 @@ local function addPlayerHighlight(otherPlayer)
 	local char = otherPlayer.Character
 	if not char or char:FindFirstChild("WallhackHighlight") then return end
 	local hl = Instance.new("Highlight")
-	hl.Name         = "WallhackHighlight"
-	hl.FillColor    = Color3.fromRGB(255, 0, 0)
+	hl.Name = "WallhackHighlight"
+	hl.FillColor = Color3.fromRGB(255, 0, 0)
 	hl.OutlineColor = Color3.fromRGB(0, 0, 255)
-	hl.Parent       = char
+	hl.Parent = char
 	char.AncestryChanged:Connect(function(_, parent)
 		if not parent and hl.Parent then hl:Destroy() end
 	end)
@@ -53,20 +53,20 @@ local tracers = {}
 
 local function createCylinderTracer()
 	local part = Instance.new("Part")
-	part.Name         = "Tracer"
-	part.Anchored     = true
-	part.CanCollide   = false
-	part.Size         = Vector3.new(0.1, 1, 0.1)
-	part.Material     = Enum.Material.Neon
+	part.Name = "Tracer"
+	part.Anchored = true
+	part.CanCollide = false
+	part.Size = Vector3.new(0.1, 1, 0.1)
+	part.Material = Enum.Material.Neon
 	part.Transparency = 0
-	part.Color        = Color3.fromRGB(0, 255, 0)
-	part.Parent       = workspace
+	part.Color = Color3.fromRGB(0, 255, 0)
+	part.Parent = workspace
 	Instance.new("CylinderMesh", part)
 	local hl = Instance.new("Highlight")
-	hl.Name         = "TracerHighlight"
-	hl.FillColor    = Color3.fromRGB(0, 255, 0)
+	hl.Name = "TracerHighlight"
+	hl.FillColor = Color3.fromRGB(0, 255, 0)
 	hl.OutlineColor = Color3.fromRGB(255, 255, 255)
-	hl.Parent       = part
+	hl.Parent = part
 	return part
 end
 
@@ -143,13 +143,13 @@ RunService.RenderStepped:Connect(function()
 				if not tracers[otherPlayer] then
 					tracers[otherPlayer] = createCylinderTracer()
 				end
-				local tracer    = tracers[otherPlayer]
-				local startPos  = otherRoot.Position
-				local endPos    = rootPart.Position
-				local midpoint  = (startPos + endPos) * 0.5
+				local tracer = tracers[otherPlayer]
+				local startPos = otherRoot.Position
+				local endPos = rootPart.Position
+				local midpoint = (startPos + endPos) * 0.5
 				local direction = endPos - startPos
-				local length    = direction.Magnitude
-				tracer.Size   = Vector3.new(0.1, length, 0.1)
+				local length = direction.Magnitude
+				tracer.Size = Vector3.new(0.1, length, 0.1)
 				tracer.CFrame = CFrame.new(midpoint, endPos) * CFrame.Angles(math.rad(90), 0, 0)
 			else
 				removePlayerHighlight(otherPlayer)
@@ -163,10 +163,10 @@ RunService.RenderStepped:Connect(function()
 
 	if isGodModeEnabled then
 		humanoid.MaxHealth = 1e9
-		humanoid.Health    = 1e9
+		humanoid.Health = 1e9
 	else
 		humanoid.MaxHealth = 100
-		humanoid.Health    = 100
+		humanoid.Health = 100
 	end
 
 	if isSpeedBoosted and rootPart then
