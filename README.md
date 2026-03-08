@@ -10,7 +10,8 @@ stealthWALLS - closet cheat for roblox (wallhacks,tracers,save load position,spe
 DG2D - old game engine util scripts<br>
 GEO_reverse - accurately reverses an inviduals location<br>
 Spritesheet manager demo - a tool for managing / creating spritesheets<br>
-malaransom - a ransomware that hooks into zuma for decryption (inspired by rensemware)
+malaransom - a ransomware that hooks into zuma for decryption (inspired by rensemware)<br>
+entitystructhelper - a goat simulation that is made to teach entity struct hacking
 <br>
 <img style="height:256px; width:256px;" src="cover.jpeg" alt="i need drugs certified!!!" />
 <br>
