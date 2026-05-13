@@ -8,7 +8,7 @@ import random
 version = "1.1.2"
 
 print("checking for updates")
-os.system("pip install bs4 datetime ctypes json requests tkinter subprocess platform random")
+os.system("py -m pip install beautifulsoup4 requests")
 
 from bs4 import BeautifulSoup
 import tkinter as tk
@@ -51,17 +51,17 @@ def set_startup():
 startup = None
 hidewindow = None
 
-logo = """
+logo = r"""
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 ▒  _____ _______                _______ _____            _  ________ _____   ▒
 ▒ / ____|__   __|              |__   __|  __ \          | |/ /  ____|  __ \  ▒
 ▒| (___    | | ___  __ _ _ __ ___ | |  | |__) |__ _  ___| ' /| |__  | |__) | ▒
 ▒ \___ \   | |/ _ \/ _` | '_ ` _ \| |  |  _  // _` |/ __|  < |  __| |  _  /  ▒
 ▒ ____) |  | |  __/ (_| | | | | | | |  | | \ \ (_| | (__| . \| |____| | \ \  ▒
-▒|_____/   |_|\___|\__,_|_| |_| |_|_|  |_|  \_\__,_|\___|_|\_\______|_|  \_\\ ▒
+▒|_____/   |_|\___|\__,_|_| |_| |_|_|  |_|  \_\__,_|\___|_|\_\______|_|  \_\ ▒
 ▒                                                                            ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
- """
+"""
 
 def checksetup():
     if os.path.isfile(os.getcwd() + "/config.json") != True:
