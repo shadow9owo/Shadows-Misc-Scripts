@@ -10,6 +10,5 @@ what does this tool log:
 * level (int)
 and more ...
 
-originally made for python 3.9.8
-
+originally made for python 3.9.8<br>
 updated for python 3.14.x
